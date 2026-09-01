@@ -377,6 +377,32 @@
     color:rgba(243,217,228,0.55);
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Fixed full-screen container behind content */
+  .bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures video scales without stretching */
+    z-index: -1;       /* Sends video behind text/elements */
+  }
+
+  /* Example content layered on top */
+  .content {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding-top: 20%;
+    font-family: sans-serif;
+  }
+
   @media (prefers-reduced-motion: reduce){
     .road-path-fill{ transition:none; }
     .meet-heart{ animation:none; }
@@ -389,6 +415,11 @@
 </style>
 </head>
 <body>
+<!-- Background Video Element -->
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="videoplayback.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 <canvas class="hearts" id="heartsCanvas"></canvas>
 
@@ -459,7 +490,7 @@
             <path class="photo-icon" d="M 58 190 Q 90 158 122 190"/>
           </g>
         </g>
-        <text class="frame-name" x="90" y="222">You</text>
+        <!-- <text class="frame-name" x="90" y="222">You</text> -->
       </g>
 
       <!-- photo B (right / her) -->
@@ -473,7 +504,7 @@
             <path class="photo-icon" d="M 738 190 Q 770 158 802 190"/>
           </g>
         </g>
-        <text class="frame-name" x="770" y="222">Her</text>
+        <!-- <text class="frame-name" x="770" y="222">Her</text> -->
       </g>
     </svg>
   </div>
@@ -617,8 +648,8 @@
     img.style.display = 'block';
     icon.style.display = 'none';
   }
-  setStaticPhoto('imgA', 'iconA', 'your-photo.jpg');
-  setStaticPhoto('imgB', 'iconB', 'her-photo.jpg');
+  setStaticPhoto('imgA', 'iconA', 'me.jpg');
+  setStaticPhoto('imgB', 'iconB', 'oun.jpg');
 
   requestAnimationFrame(() => {
     tick();
